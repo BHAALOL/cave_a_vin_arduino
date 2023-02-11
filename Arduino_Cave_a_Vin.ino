@@ -33,17 +33,17 @@ int hum = dhtHum.toInt();
     Serial.print (temp);
     Serial.print ("°C");
     Serial.println("");
-    digitalWrite(11, HIGH);
+    digitalWrite(11, LOW);
     }
     else {
       Serial.print ("Compresseur off il fait:");
       Serial.print(temp);
       Serial.print ("°C");
       Serial.println("");
-      digitalWrite(11, LOW);
+      digitalWrite(11, HIGH);
       }
        
-  if (temp >= 16){ // Activation du compresseur si au dessus de 16
+  if (temp < 12){ // activation du chauffage en dessous de 12
     Serial.println("Valeur du BOOL  1");
     Serial.print("Temperature actuelle : ");
     Serial.print(temp);
@@ -60,7 +60,7 @@ int hum = dhtHum.toInt();
     etatCompresseur = false;
     }
     
-  if (timer >= 2400){ // 40 Min
+  if (timer >= 600){ // 50 Min
       Serial.println ("Ventilo ON");
       digitalWrite(12, HIGH);
     }
